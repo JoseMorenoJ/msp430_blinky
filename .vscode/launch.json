@@ -6,18 +6,22 @@
     "configurations": [
         {
             "args": [
-                "1"
+                "-ex",
+                "\"target remote :2000\"",
             ],
-            "name": "gcc.exe - Build and debug active file",
+            "name": "gdb blinky",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
+            "program": "${workspaceRoot}\\build\\blinky.elf", // Specifies the full path to the executable the debugger will launch or attach to. The debugger requires this location in order to load debug symbols.
             "stopAtEntry": true,
-            "cwd": "${fileDirname}",
+            "externalConsole": true, // Used only when launching the debuggee. For attach, this parameter does not change the debuggee's behavior.
+            "cwd": "${workspaceRoot}",
             "environment": [],
-            "externalConsole": true,
             "MIMode": "gdb",
-            "miDebuggerPath": "C:\\MinGW\\bin\\gdb.exe",
+            "miDebuggerPath": "C:\\ti\\msp430-gcc\\bin\\msp430-elf-gdb.exe",
+            "miDebuggerServerAddress": "localhost:2000",
+            "debugServerPath": "msp430-gdbproxy.exe",
+            "debugServerArgs": "--tcpport=2000",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",
@@ -25,7 +29,12 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "C/C++: gcc.exe build active file"
         }
     ]
 }
+// "symbolSearchPath": "${workspaceRoot}\\build", // Tells the Visual Studio Windows Debugger what paths to search for symbol (.pdb) files. Separate multiple paths with a semicolon.
+// "requireExactSource": true, // An optional flag that tells the Visual Studio Windows Debugger to require current source code to match the pdb.
+// "additionalSOLibSearchPath": "", // Tells GDB or LLDB what paths to search for .so files. Separate multiple paths with a semicolon.
+// "avoidWindowsConsoleRedirection" : true, // In order to support VS Code's Integrated Terminal with gdb on Windows, the extension adds console redirection commands to the debuggee's arguments to have console input and output show up in the integrated terminal.
+// "logging" :  Optional flags to determine what types of messages should be logged to the Debug Console. (https://code.visualstudio.com/docs/cpp/launch-json-reference#_logging).
+// "environment" : [ { "name": "config", "value": "Debug" } ] // Environment variables to add to the environment for the program.

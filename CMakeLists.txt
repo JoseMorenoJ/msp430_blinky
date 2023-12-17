@@ -15,8 +15,9 @@ list(APPEND BUILD_FLAGS_LIST
     -fno-builtin
     -Wall
     -Wno-int-to-pointer-cast
-    -g
-    -gdwarf-3
+    -g3
+    -ggdb
+    -gdwarf-2
     -gstrict-dwarf
     -fstrict-aliasing
     -Wstrict-aliasing
@@ -27,9 +28,4 @@ set(CMAKE_C_FLAGS ${BUILD_FLAGS_LIST})
 
 # Compile the source
 # But it only makes sense to build one at a time since example_msp430.map will be overwritten
-# add_subdirectory(Tools)
-add_subdirectory(Blinky)
-# add_subdirectory(LPM35)
-# add_subdirectory(Timer)
-# add_subdirectory(Test)
-# add_subdirectory(RFM95)
+add_subdirectory(blinky)
