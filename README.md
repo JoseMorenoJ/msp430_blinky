@@ -1,4 +1,4 @@
-# CMake template msp430fr5994
+# CMake example msp430fr5994
 
 Examples for MSP430FR5994 LaunchPad based on CMake.
 
@@ -16,29 +16,19 @@ Examples for MSP430FR5994 LaunchPad based on CMake.
 
 If you need to update the driverlib or if you need to add the driverlib for another device: [www.ti.com/tool/MSPDRIVERLIB](https://www.ti.com/tool/MSPDRIVERLIB)
 
-I tried to run the cmake using `include msp430-toolchain.cmake` inside the CMakeListst.txt but it does not import the variables properly.
-
 # Projects
 
-1) *Blinky*: Simple Blinky program
-2) *LPM35*: Set device into LPM3.5, wake up using external interrupt
-3) *Timer*: Toggle LED periodically using internal timer, test UART
-4) *Test*: Test application to investigate power consumption and lifetime using a supercapacitor (UART Baudrate: 9600)
-5) *Test_LPM35*: Test application to investigate power consumption and lifetime using a supercapacitor (UART Baudrate: 9600)
-6) *Test_Si7021*: Periodically reads and prints temperature/humidity readings from Si7021 sensor
-7) *RFM95*: Periodically transmit LoRa packets using RFM95 transceiver
+1) *blinky*: Simple Blinky program
 
-- *Tools*: includes devices drivers, e.g., UART, temperature sensor
+- (TBD)*Tools*: includes devices drivers, e.g., UART, temperature sensor
 - *MSP430FR5xx_6xx*: device drivers from TI to access board's peripherals (e.g., including driverlib)
 
-# MSPDebug
-MSPDebug allows to flash and debug boards using command line and gdb.
-- To install mspdebug, follow instructions on: https://dlbeer.co.nz/mspdebug (for Windows, checkout: https://dlbeer.co.nz/mspdebug/faq.html#compile_windows and build with `make gcc=CC`)
-- Flash program using `mspdebug tilib "prog xxxx.elf"`
-- Debug program using GDB with two options:
-    1) *Command line:* Start debugging server using  `mspdebug tilib "gdb"`, connect to debug server using `msp430-elf-gdb target remote :2000`, debug using GDB
-    2) Start debugging session in VSCode (adjust path of msp430-gdb in *.vscode/launch.json* accordingly)
-- Before debugging, flash board with newest firmware!
+# MSP430-GDBProxy++
 
-# License
-This project is licensed under the terms of the MIT license.
+MSP430-GDBProxy++ allows to flash and debug boards using command line and gdb.
+- To install MSP430-GDBProxy++, follow instructions on: [https://gnutoolchains.com/msp430/gdbproxy](https://gnutoolchains.com/msp430/gdbproxy)
+- To run in command line:
+    1. Start the server: `msp430-gdbproxy.exe`
+    2. In a separate terminal connect with gdb: `msp430-elf-gdb.exe build\blinky.elf -ex "target remote: 2000"`
+- To run with VSCode, I am still figuring it out. The current configuration in .vscode/launch.json seems to start the server
+    but it does not finde the sources and it does not recognize the sources and breakpoints in the VSCode UI.

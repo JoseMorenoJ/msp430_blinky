@@ -28,6 +28,7 @@
                 "${workspaceRoot}",
                 "-G",
                 "Ninja",
+                "-DCMAKE_TOOLCHAIN_FILE=${workspaceRoot}\\msp430-toolchain.cmake",
                 "-DCMAKE_EXPORT_COMPILE_COMMANDS=1"
             ],
         },
